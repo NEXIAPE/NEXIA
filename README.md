@@ -95,6 +95,17 @@ const NEXIA_CONFIG = {
 - **Accesibilidad**: roles ARIA, `aria-modal`, foco gestionado, cierre con `Esc`, navegación por teclado, `:focus-visible`, `prefers-reduced-motion`, contraste AA, labels en todos los campos.
 - **Mobile-first**: grids colapsables, áreas táctiles ≥ 44px, modal con scroll, sin overflow horizontal.
 
+## 4b. Capa de motion / experiencia premium
+
+Toda la animación es vanilla (cero dependencias), GPU-friendly y desactivable:
+
+- **Hero**: entrada escalonada (CSS keyframes, sin FOUC), grid + auroras a la deriva y un artefacto de producto en vivo (panel "CONTROL OS" con sparkline que se dibuja, barras y KPIs) que vuelve tangible el sistema operativo.
+- **Stepper de metodología**: línea de progreso que se llena y nodos que aparecen en secuencia al entrar en viewport.
+- **Caso Roser**: las métricas hacen *count-up* al verse (prueba "viva").
+- **Microinteracciones**: spotlight que sigue el cursor en las tarjetas (solo `pointer:fine`), sheen en botones primarios, nav que se eleva con el scroll y barra de progreso de lectura.
+- **Reveals escalonados** por sección con `IntersectionObserver`.
+- **`prefers-reduced-motion`**: cada efecto se neutraliza; el contenido queda estático y legible.
+
 ## 5. Pendientes de marca (assets)
 
 - [ ] Subir `og-image.png` (1200×630) para previews en redes.

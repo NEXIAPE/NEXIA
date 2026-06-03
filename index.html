@@ -374,9 +374,155 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
   .reveal{opacity:1;transform:none;transition:none}
   .btn:hover,.icp-card:hover{transform:none}
 }
+/* ════════════════════════════════════════════════════════════
+   PREMIUM MOTION & UI LAYER  (Stripe / Linear / Vercel grade)
+   ════════════════════════════════════════════════════════════ */
+
+/* scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:300;will-change:transform;box-shadow:0 0 12px rgba(10,240,255,.5)}
+
+/* nav reacts to scroll */
+nav{transition:height .35s cubic-bezier(.22,1,.36,1),background .35s ease,box-shadow .35s ease,border-color .35s ease}
+nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(255,255,255,.10);box-shadow:0 12px 40px -12px rgba(0,0,0,.55)}
+
+/* gradient text accent */
+.grad{background:linear-gradient(100deg,#3B82FF 0%,#0AF0FF 52%,#7B2FFF 108%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* sheen on primary buttons */
+.btn{position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);transition:left .65s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.btn-primary:hover::after{left:150%}
+
+/* cursor-aware spotlight on cards */
+.spot{position:relative;isolation:isolate}
+.spot::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(10,240,255,.12),transparent 62%);opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:0}
+.spot:hover::before{opacity:1}
+.spot>*{position:relative;z-index:1}
+
+/* ─── HERO: layered atmosphere ─── */
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 95% 75% at 50% 0%,#000 28%,transparent 76%);mask-image:radial-gradient(ellipse 95% 75% at 50% 0%,#000 28%,transparent 76%);opacity:.55;pointer-events:none}
+.hero-blob-1{animation:drift1 24s ease-in-out infinite}
+.hero-blob-2{animation:drift2 30s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,40px) scale(1.1)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
+
+/* hero 2-column layout */
+.hero-top{display:grid;grid-template-columns:1.04fr .92fr;gap:56px;align-items:center}
+.hero-left{max-width:660px}
+.hero h1{max-width:none}
+
+/* hero entrance (CSS-driven, no JS dependency → no FOUC) */
+.hero-anim{opacity:0;animation:heroIn .8s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>.hero-anim:nth-child(1){animation-delay:.06s}
+.hero-left>.hero-anim:nth-child(2){animation-delay:.16s}
+.hero-left>.hero-anim:nth-child(3){animation-delay:.26s}
+.hero-left>.hero-anim:nth-child(4){animation-delay:.34s}
+.hero-left>.hero-anim:nth-child(5){animation-delay:.42s}
+.hero-left>.hero-anim:nth-child(6){animation-delay:.50s}
+.hero-funnel.hero-anim{animation-delay:.62s}
+.hero-visual{opacity:0;animation:heroVis 1s cubic-bezier(.22,1,.36,1) .4s forwards}
+@keyframes heroVis{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+
+/* ─── HERO: live "CONTROL OS" dashboard artifact ─── */
+.hero-visual{position:relative}
+.hv-panel{position:relative;background:linear-gradient(180deg,rgba(18,25,34,.92),rgba(11,15,21,.94));border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:0 40px 90px -30px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.04);overflow:hidden;z-index:1}
+.hv-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.hv-glow{position:absolute;width:300px;height:300px;background:var(--blue);filter:blur(120px);opacity:.22;top:-70px;right:-50px;border-radius:50%;pointer-events:none;z-index:0}
+.hv-head{display:flex;align-items:center;justify-content:space-between}
+.hv-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:.02em}
+.hv-title span{color:var(--blue)}
+.hv-live{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan)}
+.hv-live i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blink 1.8s infinite}
+.hv-sub{font-size:11px;color:var(--muted);margin:3px 0 18px}
+.hv-kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.hv-kpi{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:12px}
+.hv-k{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:7px}
+.hv-v{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:25px;line-height:1;display:block}
+.hv-trend{font-size:10px;font-weight:700;margin-top:5px;display:inline-block;color:#37E0A6}
+.hv-chart{position:relative;height:78px;margin-bottom:14px}
+.hv-chart svg{width:100%;height:100%;display:block}
+.hv-spark{fill:none;stroke:var(--cyan);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:620;stroke-dashoffset:620;animation:draw 2.4s cubic-bezier(.6,0,.2,1) .7s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hv-area{opacity:0;animation:fadein 1.1s ease 1.9s forwards}
+@keyframes fadein{to{opacity:.5}}
+.hv-bars{display:flex;align-items:flex-end;gap:6px;height:44px;margin-bottom:16px}
+.hv-bar{flex:1;background:linear-gradient(180deg,var(--blue),rgba(0,85,255,.2));border-radius:3px 3px 0 0;height:0;animation:grow .95s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes grow{to{height:var(--h)}}
+.hv-foot{display:flex;gap:8px;flex-wrap:wrap}
+.hv-chip{font-size:10.5px;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:100px;padding:5px 11px}
+.hv-chip.ok{color:#37E0A6;border-color:rgba(55,224,166,.3);background:rgba(55,224,166,.07)}
+.hv-float{position:absolute;background:rgba(11,15,21,.94);border:1px solid var(--border-cyan);border-radius:13px;padding:11px 15px;box-shadow:0 18px 44px -12px rgba(0,0,0,.8);z-index:2;animation:floaty 6s ease-in-out infinite}
+.hv-float .ff-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--cyan);line-height:1}
+.hv-float .ff-l{font-size:10px;color:var(--muted);margin-top:2px}
+.hv-float-1{top:-22px;left:-30px}
+.hv-float-2{bottom:30px;right:-34px;animation-delay:1.6s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+
+/* ─── METHODOLOGY: connected stepper ─── */
+.steps{position:relative;padding-top:6px}
+.steps-line{position:absolute;top:29px;left:10%;right:10%;height:2px;background:var(--border);border-radius:2px;overflow:hidden;z-index:0}
+.steps-line i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left center;transition:transform 1.5s cubic-bezier(.65,0,.35,1) .35s}
+.steps.in .steps-line i{transform:scaleX(1)}
+.step{position:relative;background:none;border:none;padding:0;display:flex;flex-direction:column}
+.step-node{width:46px;height:46px;border-radius:50%;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:var(--muted);background:var(--dark);border:1px solid var(--border);position:relative;z-index:2;transform:scale(.5);opacity:0;transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .5s ease,color .3s,border-color .3s,box-shadow .3s}
+.steps.in .step-node{transform:scale(1);opacity:1;color:#fff;border-color:var(--border-blue);background:radial-gradient(circle at 50% 30%,#10204a,#0a1020);box-shadow:0 0 0 5px rgba(0,85,255,.07),0 8px 22px -8px rgba(0,85,255,.6);transition-delay:calc(.3s + (var(--si) - 1) * .12s)}
+.step-card{background:var(--dark);border:1px solid var(--border);border-radius:13px;padding:22px 18px;height:100%;transition:border-color .25s,transform .25s,background .25s}
+.step:hover .step-card{border-color:var(--border-cyan);transform:translateY(-4px);background:var(--surface2)}
+.step-card .tag{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.step-card h3{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:900;letter-spacing:-.01em;margin-bottom:6px}
+.step-card p{font-size:12.5px;color:var(--muted);line-height:1.55}
+
+/* metric count-up colors */
+.metric-n .cu{color:var(--white)}
+.metric{transition:transform .25s,border-color .25s}
+
+/* ─── STAGGERED CHILDREN reveal ─── */
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(1){transition-delay:.04s}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.20s}
+.stagger.in>*:nth-child(4){transition-delay:.28s}
+.stagger.in>*:nth-child(5){transition-delay:.36s}
+.stagger.in>*:nth-child(6){transition-delay:.44s}
+
+/* refined base reveal easing */
+.reveal{transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+
+/* ─── RESPONSIVE: premium layer ─── */
+@media(max-width:980px){
+  .hero-top{grid-template-columns:1fr;gap:44px}
+  .hero-left{max-width:680px}
+  .steps-line{display:none}
+  .step{flex-direction:row;gap:16px;align-items:flex-start}
+  .step-node{margin:0;flex-shrink:0;width:42px;height:42px}
+  .step-card{flex:1}
+}
+@media(max-width:560px){
+  .hv-float{display:none}
+  .hero-visual{margin-top:8px}
+  .steps{grid-template-columns:1fr}
+}
+
+/* ─── reduced motion: neutralize everything ─── */
+@media(prefers-reduced-motion:reduce){
+  .scroll-progress{display:none}
+  .hero-anim,.hero-visual{opacity:1!important;animation:none!important;transform:none!important}
+  .hero-grid{opacity:.4}
+  .hv-spark{stroke-dashoffset:0!important;animation:none!important}
+  .hv-area{opacity:.5!important;animation:none!important}
+  .hv-bar{height:var(--h)!important;animation:none!important}
+  .stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+  .steps-line i{transform:scaleX(1)!important;transition:none!important}
+  .step-node{transform:scale(1)!important;opacity:1!important;transition:none!important}
+  .spot::before{display:none}
+}
+
 </style>
 </head>
 <body>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
 <!-- ════════════════  NAV  ════════════════ -->
 <nav aria-label="Principal">
@@ -398,28 +544,74 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
 <!-- ════════════════  HERO  ════════════════ -->
 <header class="hero" id="top">
   <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
   </div>
   <div class="hero-inner">
-    <div class="hero-eyebrow reveal">
-      <span class="hero-dot" aria-hidden="true"></span>
-      <span class="label">Consultoría de transformación · Lima, Perú</span>
-    </div>
-    <h1 class="reveal">Instalamos el <em>sistema operativo</em> que tu negocio necesita para crecer sin depender de su dueño.</h1>
-    <p class="hero-tag reveal">Implementamos, no aconsejamos.</p>
-    <p class="hero-sub reveal">Control financiero, procesos, automatización e IA aplicada — instalados y operando. Empezamos con un diagnóstico gratuito del que te llevas <strong style="color:#fff;font-weight:600">quick wins accionables</strong>, decidas trabajar con nosotros o no.</p>
-    <div class="hero-actions reveal">
-      <a href="#" class="btn btn-primary btn-lg" data-cta="hero" onclick="return openModal(event)">Agenda tu diagnóstico gratuito →</a>
-      <a href="#caso" class="btn btn-ghost btn-lg">Ver un caso real</a>
-    </div>
-    <p class="hero-note reveal">
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gratis</span>
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sin pitch de venta</span>
-      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sales con quick wins</span>
-    </p>
+    <div class="hero-top">
+      <div class="hero-left">
+        <div class="hero-eyebrow hero-anim">
+          <span class="hero-dot" aria-hidden="true"></span>
+          <span class="label">Consultoría de transformación · Lima, Perú</span>
+        </div>
+        <h1 class="hero-anim">Instalamos el <em class="grad">sistema operativo</em> que tu negocio necesita para crecer sin depender de su dueño.</h1>
+        <p class="hero-tag hero-anim">Implementamos, no aconsejamos.</p>
+        <p class="hero-sub hero-anim">Control financiero, procesos, automatización e IA aplicada — instalados y operando. Empezamos con un diagnóstico gratuito del que te llevas <strong style="color:#fff;font-weight:600">quick wins accionables</strong>, decidas trabajar con nosotros o no.</p>
+        <div class="hero-actions hero-anim">
+          <a href="#" class="btn btn-primary btn-lg" data-cta="hero" onclick="return openModal(event)">Agenda tu diagnóstico gratuito →</a>
+          <a href="#caso" class="btn btn-ghost btn-lg">Ver un caso real</a>
+        </div>
+        <p class="hero-note hero-anim">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gratis</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sin pitch de venta</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sales con quick wins</span>
+        </p>
+      </div>
 
-    <div class="hero-funnel reveal" aria-label="Cómo trabajamos, resumen">
+      <!-- Live "sistema operativo" artifact -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hv-glow"></div>
+        <div class="hv-float hv-float-1"><div class="ff-n">0</div><div class="ff-l">intervención del dueño</div></div>
+        <div class="hv-float hv-float-2"><div class="ff-n">14→1</div><div class="ff-l">deudas en una vista</div></div>
+        <div class="hv-panel">
+          <div class="hv-head">
+            <span class="hv-title"><span>CONTROL</span> OS</span>
+            <span class="hv-live"><i></i>En vivo</span>
+          </div>
+          <div class="hv-sub">Cierre financiero semanal · operado por el equipo</div>
+          <div class="hv-kpis">
+            <div class="hv-kpi"><span class="hv-k">Caja disponible</span><span class="hv-v">S/ 248K</span><span class="hv-trend">▲ 12% sem.</span></div>
+            <div class="hv-kpi"><span class="hv-k">Margen neto</span><span class="hv-v">23.4%</span><span class="hv-trend">▲ 3.1 pts</span></div>
+          </div>
+          <div class="hv-chart">
+            <svg viewBox="0 0 300 78" preserveAspectRatio="none">
+              <defs><linearGradient id="hvg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#0AF0FF" stop-opacity=".35"/>
+                <stop offset="1" stop-color="#0AF0FF" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path class="hv-area" d="M0,58 L40,52 L80,60 L120,42 L160,48 L200,30 L240,36 L300,16 L300,78 L0,78 Z" fill="url(#hvg)"/>
+              <path class="hv-spark" d="M0,58 L40,52 L80,60 L120,42 L160,48 L200,30 L240,36 L300,16"/>
+            </svg>
+          </div>
+          <div class="hv-bars">
+            <span class="hv-bar" style="--h:42%;animation-delay:.9s"></span>
+            <span class="hv-bar" style="--h:64%;animation-delay:1.0s"></span>
+            <span class="hv-bar" style="--h:50%;animation-delay:1.1s"></span>
+            <span class="hv-bar" style="--h:82%;animation-delay:1.2s"></span>
+            <span class="hv-bar" style="--h:58%;animation-delay:1.3s"></span>
+            <span class="hv-bar" style="--h:94%;animation-delay:1.4s"></span>
+            <span class="hv-bar" style="--h:72%;animation-delay:1.5s"></span>
+          </div>
+          <div class="hv-foot">
+            <span class="hv-chip ok">✓ 3 procesos delegados</span>
+            <span class="hv-chip">Sin el CEO en el cierre</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-funnel hero-anim" aria-label="Cómo trabajamos, resumen">
       <div class="hf-step"><div class="hf-k">Llamada</div><div class="hf-v">Gratis</div><div class="hf-d">Vemos si hay fit. Sin pitch.</div></div>
       <div class="hf-step"><div class="hf-k">Diagnóstico</div><div class="hf-v">Gratis · Quick wins</div><div class="hf-d">Hallazgos, causa raíz e impacto.</div></div>
       <div class="hf-step"><div class="hf-k">Propuesta</div><div class="hf-v">Foco y alcance</div><div class="hf-d">El plan a medida del foco principal.</div></div>
@@ -435,7 +627,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <span class="label">El problema</span>
       <h2 id="problema-h">Tu negocio crece. Pero se siente que te consume.</h2>
     </div>
-    <div class="pain-grid reveal">
+    <div class="pain-grid reveal stagger">
       <div class="pain-cell">
         <h3>Facturas más, ganas menos</h3>
         <p>Los márgenes se erosionan y no sabes exactamente por dónde se va el dinero.</p>
@@ -461,7 +653,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <h2 id="icp-h">Para negocios que crecieron más rápido que su estructura.</h2>
       <p>No trabajamos con startups en validación ni con quien busca el precio más bajo. Trabajamos con empresas que ya facturan y necesitan sistema.</p>
     </div>
-    <div class="icp-grid reveal">
+    <div class="icp-grid reveal stagger">
       <div class="icp-card">
         <div class="icp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
         <div><h3>Creció en ventas, no en sistema</h3><p>Facturas bien, pero la operación nunca se ordenó al ritmo del crecimiento.</p></div>
@@ -492,35 +684,46 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <p>Leemos tu negocio en cinco dimensiones, aislamos el foco que más pesa y diseñamos la solución antes de implementarla. Un proceso ordenado, replicable y medible — no una receta genérica.</p>
     </div>
     <div class="steps reveal">
-      <div class="step">
-        <div class="step-n">01</div>
-        <h3>Llamada</h3>
-        <div class="tag">Fit y contexto</div>
-        <p>Vemos si hay encaje y entendemos cómo opera tu negocio hoy.</p>
+      <div class="steps-line" aria-hidden="true"><i></i></div>
+      <div class="step" style="--si:1">
+        <div class="step-node" aria-hidden="true">01</div>
+        <div class="step-card">
+          <h3>Llamada</h3>
+          <div class="tag">Fit y contexto</div>
+          <p>Vemos si hay encaje y entendemos cómo opera tu negocio hoy.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-n">02</div>
-        <h3>Intake</h3>
-        <div class="tag">Datos reales</div>
-        <p>Un formulario corto que alimenta el diagnóstico con tus números.</p>
+      <div class="step" style="--si:2">
+        <div class="step-node" aria-hidden="true">02</div>
+        <div class="step-card">
+          <h3>Intake</h3>
+          <div class="tag">Datos reales</div>
+          <p>Un formulario corto que alimenta el diagnóstico con tus números.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-n">03</div>
-        <h3>Diagnóstico</h3>
-        <div class="tag">5 dimensiones</div>
-        <p>Hallazgos, causa raíz, impacto cuantificado y quick wins accionables.</p>
+      <div class="step" style="--si:3">
+        <div class="step-node" aria-hidden="true">03</div>
+        <div class="step-card">
+          <h3>Diagnóstico</h3>
+          <div class="tag">5 dimensiones</div>
+          <p>Hallazgos, causa raíz, impacto cuantificado y quick wins accionables.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-n">04</div>
-        <h3>Propuesta</h3>
-        <div class="tag">Foco y alcance</div>
-        <p>El plan a medida para el foco que más pesa: alcance, plazo y resultado.</p>
+      <div class="step" style="--si:4">
+        <div class="step-node" aria-hidden="true">04</div>
+        <div class="step-card">
+          <h3>Propuesta</h3>
+          <div class="tag">Foco y alcance</div>
+          <p>El plan a medida para el foco que más pesa: alcance, plazo y resultado.</p>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-n">05</div>
-        <h3>Implementación</h3>
-        <div class="tag">Transform + Partner</div>
-        <p>Instalamos el sistema y luego lo operamos contigo.</p>
+      <div class="step" style="--si:5">
+        <div class="step-node" aria-hidden="true">05</div>
+        <div class="step-card">
+          <h3>Implementación</h3>
+          <div class="tag">Transform + Partner</div>
+          <p>Instalamos el sistema y luego lo operamos contigo.</p>
+        </div>
       </div>
     </div>
     <div class="steps-foot reveal">
@@ -571,7 +774,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <h2 id="solve-h">No vendemos cuatro servicios. Resolvemos el foco que importa.</h2>
       <p>Un diagnóstico produce un foco, no un menú. Estos son los cuatro lentes con los que leemos —y arreglamos— tu negocio.</p>
     </div>
-    <div class="lens-grid reveal">
+    <div class="lens-grid reveal stagger">
       <div class="lens">
         <div class="lens-name"><span class="dotc" style="background:var(--cyan)"></span>CONTROL</div>
         <div class="lens-tag">Visibilidad y decisión</div>
@@ -607,11 +810,11 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <span class="case-badge">Resultado verificable</span>
     </div>
     <p class="case-ctx">Grupo de dos empresas · 15 personas · operaciones en Lima y provincia. Crecía en ventas sin control financiero, con todas las decisiones críticas concentradas en el dueño.</p>
-    <div class="case-metrics">
-      <div class="metric"><div class="metric-n">14<span>→</span>1</div><div class="metric-l">deudas dispersas consolidadas en una sola vista de control</div></div>
-      <div class="metric"><div class="metric-n">0</div><div class="metric-l">intervención del dueño en el cierre financiero semanal</div></div>
-      <div class="metric"><div class="metric-n">3</div><div class="metric-l">procesos críticos documentados y delegados al equipo</div></div>
-      <div class="metric"><div class="metric-n">4<span> sem</span></div><div class="metric-l">de cierre financiero ejecutado por el equipo, no por el CEO</div></div>
+    <div class="case-metrics stagger">
+      <div class="metric"><div class="metric-n"><span class="cu" data-to="14">0</span><span>→</span>1</div><div class="metric-l">deudas dispersas consolidadas en una sola vista de control</div></div>
+      <div class="metric"><div class="metric-n"><span class="cu" data-to="0">0</span></div><div class="metric-l">intervención del dueño en el cierre financiero semanal</div></div>
+      <div class="metric"><div class="metric-n"><span class="cu" data-to="3">0</span></div><div class="metric-l">procesos críticos documentados y delegados al equipo</div></div>
+      <div class="metric"><div class="metric-n"><span class="cu" data-to="4">0</span><span> sem</span></div><div class="metric-l">de cierre financiero ejecutado por el equipo, no por el CEO</div></div>
     </div>
     <p class="case-quote">Entregamos el sistema operando — no un PowerPoint con recomendaciones.</p>
   </div>
@@ -625,7 +828,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <h2 id="tx-h">Resultado fijo. Por hitos. Implementamos, no aconsejamos.</h2>
       <p>Dos formatos, una metodología grado consultora. Elegimos el que tu foco necesita en la propuesta.</p>
     </div>
-    <div class="tx-grid reveal">
+    <div class="tx-grid reveal stagger">
       <div class="tx-card featured">
         <span class="tx-pill">Productizado</span>
         <h3>CONTROL OS</h3>
@@ -665,7 +868,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
       <span class="label">Cómo funciona la inversión</span>
       <h2 id="inv-h">Precio fijo por valor. El número exacto llega en tu propuesta.</h2>
     </div>
-    <div class="inv-grid reveal">
+    <div class="inv-grid reveal stagger">
       <div class="inv-card"><div class="n">01</div><h3>Gratis primero</h3><p>La llamada y el diagnóstico no cuestan nada. Sales con quick wins aplicables de inmediato.</p></div>
       <div class="inv-card"><div class="n">02</div><h3>Precio en la propuesta</h3><p>Recién ahí ves la inversión: alcance, plazo y monto fijos, sin sorpresas.</p></div>
       <div class="inv-card"><div class="n">03</div><h3>Anclado al valor</h3><p>El precio refleja el costo del problema resuelto, no las horas trabajadas.</p></div>
@@ -1063,11 +1266,61 @@ document.querySelectorAll('.faq-q').forEach(function(q){
   });
 });
 
-/* ───────────────  SCROLL REVEAL  ─────────────── */
+/* ───────────────  SCROLL REVEAL (+ stagger)  ─────────────── */
 const ro=new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
-},{threshold:0.12});
-document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal,.stagger').forEach(function(el){ ro.observe(el); });
+
+/* ───────────────  PREMIUM MOTION LAYER  ─────────────── */
+const PREFERS_REDUCE = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* scroll progress bar + nav elevation */
+(function(){
+  const sp=document.getElementById('scroll-progress');
+  const navEl=document.querySelector('nav');
+  let ticking=false;
+  function update(){
+    const h=document.documentElement;
+    const max=h.scrollHeight-h.clientHeight;
+    const y=h.scrollTop||document.body.scrollTop;
+    if(sp) sp.style.transform='scaleX('+(max>0?y/max:0)+')';
+    if(navEl) navEl.classList.toggle('scrolled', y>24);
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){requestAnimationFrame(update);ticking=true;} },{passive:true});
+  update();
+})();
+
+/* count-up on the credibility metrics */
+(function(){
+  function run(el){
+    const to=parseFloat(el.getAttribute('data-to'))||0;
+    if(PREFERS_REDUCE||to===0){ el.textContent=String(to); return; }
+    const dur=1100, t0=performance.now();
+    (function tick(now){
+      const k=Math.min(1,(now-t0)/dur);
+      el.textContent=String(Math.round(to*(1-Math.pow(1-k,3))));
+      if(k<1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ run(e.target); obs.unobserve(e.target); } });
+  },{threshold:.6});
+  document.querySelectorAll('.cu').forEach(function(el){ obs.observe(el); });
+})();
+
+/* cursor-aware spotlight on cards (pointer-fine only) */
+if(window.matchMedia('(pointer:fine)').matches && !PREFERS_REDUCE){
+  document.querySelectorAll('.icp-card,.lens,.tx-card,.step-card,.inv-card,.dim,.metric,.pain-cell').forEach(function(c){
+    c.classList.add('spot');
+    c.addEventListener('pointermove',function(e){
+      const r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      c.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+}
 
 /* ───────────────  SMOOTH SCROLL + YEAR  ─────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
