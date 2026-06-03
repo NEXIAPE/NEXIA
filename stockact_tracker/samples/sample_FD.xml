@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Archivo de EJEMPLO que imita el formato del índice anual de la Cámara
+  (xxxxFD.xml dentro del ZIP oficial). Sirve para entender la estructura y
+  para pruebas del parser. NO son datos reales.
+
+  Campos relevantes por <Member>:
+    Prefix, Last, First, Suffix, FilingType, StateDst, Year, FilingDate, DocID
+  FilingType "P" = Periodic Transaction Report (PTR), que es lo que filtramos.
+-->
+<FinancialDisclosure>
+  <Member>
+    <Prefix>Hon.</Prefix>
+    <Last>Doe</Last>
+    <First>Jane</First>
+    <Suffix></Suffix>
+    <FilingType>P</FilingType>
+    <StateDst>CA12</StateDst>
+    <Year>2026</Year>
+    <FilingDate>5/20/2026</FilingDate>
+    <DocID>20000001</DocID>
+  </Member>
+  <Member>
+    <Prefix>Hon.</Prefix>
+    <Last>Smith</Last>
+    <First>John</First>
+    <Suffix></Suffix>
+    <FilingType>P</FilingType>
+    <StateDst>TX07</StateDst>
+    <Year>2026</Year>
+    <FilingDate>5/22/2026</FilingDate>
+    <DocID>20000002</DocID>
+  </Member>
+  <Member>
+    <Prefix>Hon.</Prefix>
+    <Last>Jones</Last>
+    <First>Robert</First>
+    <Suffix></Suffix>
+    <FilingType>A</FilingType>
+    <StateDst>NY10</StateDst>
+    <Year>2026</Year>
+    <FilingDate>5/15/2026</FilingDate>
+    <DocID>10055555</DocID>
+  </Member>
+</FinancialDisclosure>

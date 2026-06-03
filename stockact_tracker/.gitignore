@@ -1,0 +1,13 @@
+# Base de datos local (se regenera al ejecutar)
+stockact.db
+stockact.db-journal
+
+# Informes generados y cache de descargas
+output/*.txt
+output/_cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

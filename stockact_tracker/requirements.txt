@@ -1,0 +1,9 @@
+# Dependencias del proyecto (v1). Instálalas con:
+#     pip install -r requirements.txt
+#
+# Mínimas para que funcione el conector de la Cámara:
+requests>=2.31          # descargar archivos por internet (HTTP)
+pdfplumber>=0.11        # leer texto/tablas de los PDF de los PTR
+
+# --- Opcionales (NO necesarias en la v1; déjalas comentadas) ---
+# yfinance>=0.2         # si quieres sacar el SECTOR de cada ticker en línea
