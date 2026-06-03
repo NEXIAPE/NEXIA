@@ -564,6 +564,20 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
 .sympt-foot p{font-size:16px;font-weight:500}
 .sympt-foot strong{color:var(--cyan);font-weight:700}
 
+/* FIT — es / no es para ti */
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fit-col{background:var(--dark);border:1px solid var(--border);border-radius:14px;padding:30px 28px}
+.fit-col.yes{border-color:rgba(55,224,166,.25);background:rgba(55,224,166,.04)}
+.fit-col.no{border-color:rgba(255,90,90,.18)}
+.fit-h{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:-.01em;margin-bottom:20px}
+.fit-col.yes .fit-h{color:#37E0A6}.fit-col.yes .fit-h svg{stroke:#37E0A6}
+.fit-col.no .fit-h{color:#FF7A7A}.fit-col.no .fit-h svg{stroke:#FF7A7A}
+.fit-col ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.fit-col li{font-size:14.5px;color:rgba(255,255,255,.82);line-height:1.5;padding-left:18px;position:relative}
+.fit-col li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--muted2)}
+.fit-col.yes li::before{background:#37E0A6}
+.fit-col.no li::before{background:#FF7A7A}
+
 /* PROBLEM CATEGORIES — "qué resolvemos" */
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .cat{background:var(--dark);padding:28px 24px;transition:background .25s}
@@ -593,6 +607,7 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
 }
 @media(max-width:680px){
   .sympt-grid{grid-template-columns:1fr}
+  .fit-grid{grid-template-columns:1fr}
   .cat-grid{grid-template-columns:1fr 1fr}
   .tools-grid{grid-template-columns:1fr}
   .cred-inner{flex-direction:column;text-align:center;gap:20px}
@@ -619,7 +634,7 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
       <a href="#sintomas" class="nav-link">Señales</a>
       <a href="#que-resolvemos" class="nav-link">Qué resolvemos</a>
       <a href="#como-trabajamos" class="nav-link">Método</a>
-      <a href="#caso" class="nav-link">Casos</a>
+      <a href="#diagnostico" class="nav-link">Diagnóstico</a>
       <a href="#" class="btn btn-primary nav-cta" data-cta="nav" onclick="return openModal(event)">Agenda tu diagnóstico</a>
     </div>
   </div>
@@ -644,7 +659,7 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
         <p class="hero-sub hero-anim">Dinero que se fuga, decisiones sin información, operación que depende de una persona, crecimiento que genera más caos que control. Aislamos el problema que más te cuesta —<strong style="color:#fff;font-weight:600">financiero, operativo, tecnológico o de procesos</strong>— y lo resolvemos de raíz.</p>
         <div class="hero-actions hero-anim">
           <a href="#" class="btn btn-primary btn-lg" data-cta="hero" onclick="return openModal(event)">Agenda tu diagnóstico gratuito →</a>
-          <a href="#caso" class="btn btn-ghost btn-lg">Ver un caso real</a>
+          <a href="#que-resolvemos" class="btn btn-ghost btn-lg">Qué resolvemos</a>
         </div>
         <p class="hero-note hero-anim">
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gratis</span>
@@ -682,13 +697,6 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
         </div>
       </div>
     </div>
-
-    <div class="hero-funnel hero-anim" aria-label="Cómo trabajamos, resumen">
-      <div class="hf-step"><div class="hf-k">Llamada</div><div class="hf-v">Gratis</div><div class="hf-d">Vemos si hay fit. Sin pitch.</div></div>
-      <div class="hf-step"><div class="hf-k">Diagnóstico</div><div class="hf-v">Gratis · Quick wins</div><div class="hf-d">Hallazgos, causa raíz e impacto.</div></div>
-      <div class="hf-step"><div class="hf-k">Propuesta</div><div class="hf-v">Foco y alcance</div><div class="hf-d">El plan a medida del foco principal.</div></div>
-      <div class="hf-step"><div class="hf-k">Implementación</div><div class="hf-v">TRANSFORM + PARTNER</div><div class="hf-d">Instalamos y lo operamos contigo.</div></div>
-    </div>
   </div>
 </header>
 
@@ -706,38 +714,13 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
   </div>
 </section>
 
-<!-- ════════════════  PROBLEM  ════════════════ -->
-<section class="sec" id="problema" aria-labelledby="problema-h">
-  <div class="sec-inner">
-    <div class="sec-head reveal" style="max-width:820px">
-      <span class="label">El problema</span>
-      <h2 id="problema-h">Las empresas no se frenan por falta de esfuerzo. Se frenan por problemas que nadie está midiendo.</h2>
-    </div>
-    <div class="pain-grid reveal stagger">
-      <div class="pain-cell">
-        <h3>Crecimiento desordenado</h3>
-        <p>Las ventas suben más rápido que la estructura. El crecimiento genera más caos que control.</p>
-      </div>
-      <div class="pain-cell">
-        <h3>Todo depende del dueño</h3>
-        <p>Decisiones, procesos y conocimiento concentrados en una o dos personas. Si no están, todo se detiene.</p>
-      </div>
-      <div class="pain-cell">
-        <h3>Se decide sin información</h3>
-        <p>Reportes que llegan tarde, datos poco confiables, costos ocultos. Las decisiones se toman por intuición.</p>
-      </div>
-    </div>
-    <p class="pain-foot reveal">El problema más caro casi nunca es el más visible. <em>Por eso lo buscamos.</em></p>
-  </div>
-</section>
-
 <!-- ════════════════  SYMPTOMS  ════════════════ -->
-<section class="sec bg-surface" id="sintomas" aria-labelledby="sympt-h">
+<section class="sec" id="sintomas" aria-labelledby="sympt-h">
   <div class="sec-inner">
     <div class="sec-head reveal" style="max-width:720px">
       <span class="label">Señales de alerta</span>
       <h2 id="sympt-h">¿Tu empresa presenta alguna de estas señales?</h2>
-      <p>Cada una es la punta de un problema que está costando dinero, tiempo o control. Si reconoces tres o más, hay algo caro operando bajo la superficie.</p>
+      <p>Las empresas no se frenan por falta de esfuerzo, sino por problemas que nadie está midiendo. Cada señal es la punta de uno. Si reconoces tres o más, hay algo caro operando bajo la superficie.</p>
     </div>
     <div class="sympt-grid reveal stagger">
       <div class="sympt"><span class="sympt-ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><p>Todo pasa por una o dos personas.</p></div>
@@ -752,127 +735,6 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
     <div class="sympt-foot reveal">
       <p>Marcaste varias, ¿verdad? <strong>El diagnóstico las convierte en hallazgos con causa raíz e impacto.</strong></p>
       <a href="#" class="btn btn-primary" data-cta="sintomas" onclick="return openModal(event)">Diagnostica tu empresa →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════  ICP  ════════════════ -->
-<section class="sec" id="para-quien" aria-labelledby="icp-h">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <span class="label">A quién servimos</span>
-      <h2 id="icp-h">Para negocios que crecieron más rápido que su estructura.</h2>
-      <p>No trabajamos con startups en validación ni con quien busca el precio más bajo. Trabajamos con empresas que ya facturan y necesitan sistema.</p>
-    </div>
-    <div class="icp-grid reveal stagger">
-      <div class="icp-card">
-        <div class="icp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
-        <div><h3>Creció en ventas, no en sistema</h3><p>Facturas bien, pero la operación nunca se ordenó al ritmo del crecimiento.</p></div>
-      </div>
-      <div class="icp-card">
-        <div class="icp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div>
-        <div><h3>El dueño es el cuello de botella</h3><p>Precios, pagos, decisiones críticas — todo pasa por una sola persona.</p></div>
-      </div>
-      <div class="icp-card">
-        <div class="icp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-        <div><h3>Un susto reciente</h3><p>Deuda, una multa, un error costoso o un susto de caja que encendió la alarma.</p></div>
-      </div>
-      <div class="icp-card">
-        <div class="icp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <div><h3>Sin visibilidad real</h3><p>No hay números confiables de caja, márgenes ni procesos para decidir con datos.</p></div>
-      </div>
-    </div>
-    <p class="icp-foot reveal">Si te reconoces en al menos dos puntos, <strong>el diagnóstico es tu primer paso.</strong></p>
-  </div>
-</section>
-
-<!-- ════════════════  HOW WE WORK  ════════════════ -->
-<section class="sec bg-surface" id="como-trabajamos" aria-labelledby="how-h">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <span class="label">El método</span>
-      <h2 id="how-h">No improvisamos. Cada etapa tiene un método y un entregable.</h2>
-      <p>Leemos tu negocio en cinco dimensiones, aislamos el foco que más pesa y diseñamos la solución antes de implementarla. Un proceso ordenado, replicable y medible — no una receta genérica.</p>
-    </div>
-    <div class="steps reveal">
-      <div class="steps-line" aria-hidden="true"><i></i></div>
-      <div class="step" style="--si:1">
-        <div class="step-node" aria-hidden="true">01</div>
-        <div class="step-card">
-          <h3>Llamada</h3>
-          <div class="tag">Fit y contexto</div>
-          <p>Vemos si hay encaje y entendemos cómo opera tu negocio hoy.</p>
-        </div>
-      </div>
-      <div class="step" style="--si:2">
-        <div class="step-node" aria-hidden="true">02</div>
-        <div class="step-card">
-          <h3>Intake</h3>
-          <div class="tag">Datos reales</div>
-          <p>Un formulario corto que alimenta el diagnóstico con tus números.</p>
-        </div>
-      </div>
-      <div class="step" style="--si:3">
-        <div class="step-node" aria-hidden="true">03</div>
-        <div class="step-card">
-          <h3>Diagnóstico</h3>
-          <div class="tag">5 dimensiones</div>
-          <p>Hallazgos, causa raíz, impacto cuantificado y quick wins accionables.</p>
-        </div>
-      </div>
-      <div class="step" style="--si:4">
-        <div class="step-node" aria-hidden="true">04</div>
-        <div class="step-card">
-          <h3>Propuesta</h3>
-          <div class="tag">Foco y alcance</div>
-          <p>El plan a medida para el foco que más pesa: alcance, plazo y resultado.</p>
-        </div>
-      </div>
-      <div class="step" style="--si:5">
-        <div class="step-node" aria-hidden="true">05</div>
-        <div class="step-card">
-          <h3>Implementación</h3>
-          <div class="tag">Transform + Partner</div>
-          <p>Instalamos el sistema y luego lo operamos contigo.</p>
-        </div>
-      </div>
-    </div>
-    <div class="steps-foot reveal">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <span><strong>El diagnóstico es el método en acción:</strong> leemos tu negocio en 5 dimensiones y aislamos el foco que más pesa antes de proponer nada.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════  DIAGNOSTIC  ════════════════ -->
-<section class="sec" id="diagnostico" aria-labelledby="diag-h">
-  <div class="sec-inner">
-    <div class="diag-wrap">
-      <div class="reveal">
-        <span class="diag-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Gratuito · Con quick wins</span>
-        <h2 id="diag-h" class="title" style="font-size:clamp(34px,4.4vw,54px);margin-bottom:18px">El Diagnóstico NEXIA</h2>
-        <p style="font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:8px">Lees tu negocio con nosotros y sales con mejoras que aplicas esta misma semana. Sin costo. La propuesta con precio llega después.</p>
-        <div class="diag-card" style="margin-top:28px">
-          <span class="label">Lo que recibes</span>
-          <div class="diag-list">
-            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Los <strong>3 hallazgos críticos</strong> de tu negocio</span></div>
-            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>La <strong>causa raíz</strong> de cada uno</span></div>
-            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>El <strong>impacto cuantificado</strong> en dinero o tiempo</span></div>
-            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Quick wins</strong> accionables esta misma semana</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="label" style="margin-bottom:18px">Leemos tu negocio en 5 dimensiones</p>
-        <div class="dims">
-          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><h4>Operaciones</h4><p>Cuellos de botella, reprocesos y errores.</p></div>
-          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div><h4>Equipo</h4><p>Roles y dependencia del dueño.</p></div>
-          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>Dinero</h4><p>Márgenes, caja, precios, costos.</p></div>
-          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h4>Clientes</h4><p>Captación, conversión, retención.</p></div>
-          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v2M15 1v2M9 21v2M15 21v2M1 9h2M1 15h2M21 9h2M21 15h2"/></svg></div><h4>Tecnología</h4><p>Automatización e IA aplicable.</p></div>
-        </div>
-        <a href="#" class="btn btn-primary btn-lg" data-cta="diagnostico" onclick="return openModal(event)" style="margin-top:24px">Agenda tu diagnóstico gratuito →</a>
-      </div>
     </div>
   </div>
 </section>
@@ -931,29 +793,124 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
   </div>
 </section>
 
-<!-- ════════════════  CASE STUDY  ════════════════ -->
-<section class="sec case" id="caso" aria-labelledby="case-h">
-  <div class="case-inner reveal">
-    <div class="case-head">
-      <div>
-        <span class="label" style="display:block;margin-bottom:12px">Un caso · entre varios tipos de problema</span>
-        <h2 id="case-h">Un grupo que crecía a ciegas — hoy decide con datos.</h2>
+<!-- ════════════════  ICP  ════════════════ -->
+<section class="sec" id="para-quien" aria-labelledby="icp-h">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="label">A quién servimos</span>
+      <h2 id="icp-h">Para negocios que crecieron más rápido que su estructura.</h2>
+      <p>Somos selectivos: trabajamos donde podemos generar el mayor impacto.</p>
+    </div>
+    <div class="fit-grid reveal stagger">
+      <div class="fit-col yes">
+        <div class="fit-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Trabajamos contigo si…</div>
+        <ul>
+          <li>Ya facturas y creciste más rápido que tu estructura.</li>
+          <li>Las decisiones críticas dependen de una o dos personas.</li>
+          <li>Quieres resolver el problema, no recibir un PowerPoint.</li>
+        </ul>
       </div>
-      <span class="case-badge">Foco: control y dependencia</span>
+      <div class="fit-col no">
+        <div class="fit-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>No somos para ti si…</div>
+        <ul>
+          <li>Eres una startup todavía validando la idea.</li>
+          <li>Buscas el precio más bajo, no el mayor impacto.</li>
+          <li>Quieres recomendaciones para ejecutar tú mismo.</li>
+        </ul>
+      </div>
     </div>
-    <p class="case-ctx">Grupo de dos empresas · 15 personas · operaciones en Lima y provincia. Creció más rápido que su estructura, con las decisiones críticas concentradas en el dueño y sin visibilidad para decidir. <strong style="color:rgba(255,255,255,.85);font-weight:600">Aquí el problema más caro era de control y dependencia</strong> — en otras empresas es de procesos, tecnología o ejecución.</p>
-    <div class="case-metrics stagger">
-      <div class="metric"><div class="metric-n"><span class="cu" data-to="14">0</span><span>→</span>1</div><div class="metric-l">frentes dispersos consolidados en una sola vista de control</div></div>
-      <div class="metric"><div class="metric-n"><span class="cu" data-to="0">0</span></div><div class="metric-l">intervención del dueño en la operación del cierre semanal</div></div>
-      <div class="metric"><div class="metric-n"><span class="cu" data-to="3">0</span></div><div class="metric-l">procesos críticos documentados y delegados al equipo</div></div>
-      <div class="metric"><div class="metric-n"><span class="cu" data-to="4">0</span><span> sem</span></div><div class="metric-l">operando sin el dueño antes del cierre del proyecto</div></div>
+  </div>
+</section>
+
+<!-- ════════════════  HOW WE WORK  ════════════════ -->
+<section class="sec bg-surface" id="como-trabajamos" aria-labelledby="how-h">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="label">El método</span>
+      <h2 id="how-h">No improvisamos. Cada etapa tiene un método y un entregable.</h2>
+      <p>Leemos tu negocio en cinco dimensiones, aislamos el foco que más pesa y diseñamos la solución antes de implementarla. Un proceso ordenado, replicable y medible — no una receta genérica.</p>
     </div>
-    <p class="case-quote">Entregamos el sistema operando — no un PowerPoint con recomendaciones.</p>
+    <div class="steps reveal">
+      <div class="steps-line" aria-hidden="true"><i></i></div>
+      <div class="step" style="--si:1">
+        <div class="step-node" aria-hidden="true">01</div>
+        <div class="step-card">
+          <h3>Llamada</h3>
+          <div class="tag">Fit y contexto</div>
+          <p>Vemos si hay encaje y entendemos cómo opera tu negocio hoy.</p>
+        </div>
+      </div>
+      <div class="step" style="--si:2">
+        <div class="step-node" aria-hidden="true">02</div>
+        <div class="step-card">
+          <h3>Intake</h3>
+          <div class="tag">Datos reales</div>
+          <p>Un formulario corto que alimenta el diagnóstico con tus números.</p>
+        </div>
+      </div>
+      <div class="step" style="--si:3">
+        <div class="step-node" aria-hidden="true">03</div>
+        <div class="step-card">
+          <h3>Diagnóstico</h3>
+          <div class="tag">5 dimensiones</div>
+          <p>Hallazgos, causa raíz, impacto cuantificado y quick wins accionables.</p>
+        </div>
+      </div>
+      <div class="step" style="--si:4">
+        <div class="step-node" aria-hidden="true">04</div>
+        <div class="step-card">
+          <h3>Propuesta</h3>
+          <div class="tag">Foco y alcance</div>
+          <p>El plan a medida para el foco que más pesa: alcance, plazo y resultado.</p>
+        </div>
+      </div>
+      <div class="step" style="--si:5">
+        <div class="step-node" aria-hidden="true">05</div>
+        <div class="step-card">
+          <h3>Implementación</h3>
+          <div class="tag">Transform + Partner</div>
+          <p>Instalamos el sistema y luego lo operamos contigo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════  DIAGNOSTIC  ════════════════ -->
+<section class="sec" id="diagnostico" aria-labelledby="diag-h">
+  <div class="sec-inner">
+    <div class="diag-wrap">
+      <div class="reveal">
+        <span class="diag-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Gratuito · Con quick wins</span>
+        <h2 id="diag-h" class="title" style="font-size:clamp(34px,4.4vw,54px);margin-bottom:18px">El Diagnóstico NEXIA</h2>
+        <p style="font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:8px">Lees tu negocio con nosotros y sales con mejoras que aplicas esta misma semana. Sin costo. La propuesta con precio llega después.</p>
+        <div class="diag-card" style="margin-top:28px">
+          <span class="label">Lo que recibes</span>
+          <div class="diag-list">
+            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Los <strong>3 hallazgos críticos</strong> de tu negocio</span></div>
+            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>La <strong>causa raíz</strong> de cada uno</span></div>
+            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>El <strong>impacto cuantificado</strong> en dinero o tiempo</span></div>
+            <div class="diag-li"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Quick wins</strong> accionables esta misma semana</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="label" style="margin-bottom:18px">Leemos tu negocio en 5 dimensiones</p>
+        <div class="dims">
+          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><h4>Operaciones</h4><p>Cuellos de botella, reprocesos y errores.</p></div>
+          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div><h4>Equipo</h4><p>Roles y dependencia del dueño.</p></div>
+          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>Dinero</h4><p>Márgenes, caja, precios, costos.</p></div>
+          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h4>Clientes</h4><p>Captación, conversión, retención.</p></div>
+          <div class="dim"><div class="d-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v2M15 1v2M9 21v2M15 21v2M1 9h2M1 15h2M21 9h2M21 15h2"/></svg></div><h4>Tecnología</h4><p>Automatización e IA aplicable.</p></div>
+        </div>
+        <a href="#" class="btn btn-primary btn-lg" data-cta="diagnostico" onclick="return openModal(event)" style="margin-top:24px">Agenda tu diagnóstico gratuito →</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ════════════════  TRANSFORM  ════════════════ -->
-<section class="sec" id="implementacion" aria-labelledby="tx-h">
+<section class="sec bg-surface" id="implementacion" aria-labelledby="tx-h">
   <div class="sec-inner">
     <div class="sec-head reveal">
       <span class="label">Cómo lo resolvemos · las herramientas</span>
@@ -996,7 +953,7 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
 </section>
 
 <!-- ════════════════  INVESTMENT (principle, no price)  ════════════════ -->
-<section class="sec bg-surface" id="inversion" aria-labelledby="inv-h">
+<section class="sec" id="inversion" aria-labelledby="inv-h">
   <div class="sec-inner">
     <div class="sec-head reveal">
       <span class="label">Cómo funciona la inversión</span>
@@ -1012,7 +969,7 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
 </section>
 
 <!-- ════════════════  FAQ  ════════════════ -->
-<section class="sec" id="faq" aria-labelledby="faq-h">
+<section class="sec bg-surface" id="faq" aria-labelledby="faq-h">
   <div class="sec-inner">
     <div class="sec-head reveal" style="margin:0 auto 48px;text-align:center">
       <span class="label">Preguntas frecuentes</span>
@@ -1069,7 +1026,7 @@ nav.scrolled{height:56px;background:rgba(7,9,15,.94);border-bottom-color:rgba(25
     <span class="footer-copy">Consultoría de transformación · Lima, Perú · © <span id="year">2026</span></span>
     <div class="footer-links">
       <a href="#como-trabajamos">Cómo trabajamos</a>
-      <a href="#caso">Caso real</a>
+      <a href="#que-resolvemos">Qué resolvemos</a>
       <a href="mailto:admin@nexia.fit">admin@nexia.fit</a>
     </div>
   </div>

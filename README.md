@@ -101,22 +101,22 @@ La landing dejó de venderse como "consultora financiera" (sesgo heredado del ca
 Roser) y pasó a su posicionamiento real: **encontramos el problema más caro que
 frena el crecimiento —en cualquier categoría— y lo resolvemos.**
 
-- **Hero**: ya no abre con "instalamos el sistema operativo / dashboard financiero".
-  Abre con *"Los problemas más caros de tu empresa son los que todavía no ves"* y un
-  artefacto **NEXIA Scan** que detecta problemas en varias áreas (procesos, información,
-  dinero, equipo, control, tecnología) — no un panel de caja.
-- **Banda de credibilidad**: Entel · CENS · Grupo Roser + disciplinas (transformación,
-  eficiencia operativa, automatización, mejora continua, gobierno de procesos). Sin
-  métricas inventadas.
-- **Sección de síntomas** (autoidentificación): 8 señales de alerta.
-- **"Qué resolvemos"**: 8 categorías de problema (financiero, operativo, organizacional,
-  tecnológico, de procesos, de información, de control, de ejecución). Las finanzas son
-  **una** de ocho. Reemplaza a las antiguas "lentes" lideradas por CONTROL/caja.
-- **Caso Roser reposicionado**: pasa de eje central a *un ejemplo* (foco: control y
-  dependencia) entre varios tipos de problema.
-- **Servicios como herramientas**: Transform, Partner, Automatización, Gobierno de
-  procesos e Inteligencia operativa se presentan como instrumentos subordinados al
-  producto real: *resolver el problema más caro*.
+Flujo actual (depurado, sin redundancia y reordenado de dolor → qué → quién → cómo → oferta):
+
+`Hero → Banda de credibilidad → Síntomas → Qué resolvemos → Para quién → Método → Diagnóstico → Herramientas → Inversión → FAQ → CTA`
+
+- **Hero**: abre con *"Los problemas más caros de tu empresa son los que todavía no
+  ves"* + artefacto **NEXIA Scan** (detección multi-área), no un dashboard financiero.
+- **Banda de credibilidad**: Entel · CENS · Grupo Roser + disciplinas. Sin métricas.
+- **Síntomas** (autoidentificación): 8 señales de alerta. Absorbe el antiguo bloque
+  "problema" para eliminar la redundancia de tres secciones de dolor seguidas.
+- **Qué resolvemos**: 8 categorías de problema (finanzas = una de ocho). Subido en el
+  orden para que el núcleo aparezca temprano.
+- **Para quién**: qualifier compacto *Sí / No es para ti* (reemplaza 4 tarjetas).
+- **Herramientas**: Transform, Partner, Automatización, Gobierno de procesos e
+  Inteligencia operativa, subordinadas al producto (resolver el problema más caro).
+- **Sin casos de éxito** por ahora (se removió el caso Grupo Roser).
+- Se quitaron duplicados de proceso (funnel del hero y nota redundante del método).
 
 ## 4b. Capa de motion / experiencia premium
 
