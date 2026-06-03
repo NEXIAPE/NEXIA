@@ -95,6 +95,29 @@ const NEXIA_CONFIG = {
 - **Accesibilidad**: roles ARIA, `aria-modal`, foco gestionado, cierre con `Esc`, navegación por teclado, `:focus-visible`, `prefers-reduced-motion`, contraste AA, labels en todos los campos.
 - **Mobile-first**: grids colapsables, áreas táctiles ≥ 44px, modal con scroll, sin overflow horizontal.
 
+## 4a. Reposicionamiento estratégico (problema-primero, multi-categoría)
+
+La landing dejó de venderse como "consultora financiera" (sesgo heredado del caso
+Roser) y pasó a su posicionamiento real: **encontramos el problema más caro que
+frena el crecimiento —en cualquier categoría— y lo resolvemos.**
+
+- **Hero**: ya no abre con "instalamos el sistema operativo / dashboard financiero".
+  Abre con *"Los problemas más caros de tu empresa son los que todavía no ves"* y un
+  artefacto **NEXIA Scan** que detecta problemas en varias áreas (procesos, información,
+  dinero, equipo, control, tecnología) — no un panel de caja.
+- **Banda de credibilidad**: Entel · CENS · Grupo Roser + disciplinas (transformación,
+  eficiencia operativa, automatización, mejora continua, gobierno de procesos). Sin
+  métricas inventadas.
+- **Sección de síntomas** (autoidentificación): 8 señales de alerta.
+- **"Qué resolvemos"**: 8 categorías de problema (financiero, operativo, organizacional,
+  tecnológico, de procesos, de información, de control, de ejecución). Las finanzas son
+  **una** de ocho. Reemplaza a las antiguas "lentes" lideradas por CONTROL/caja.
+- **Caso Roser reposicionado**: pasa de eje central a *un ejemplo* (foco: control y
+  dependencia) entre varios tipos de problema.
+- **Servicios como herramientas**: Transform, Partner, Automatización, Gobierno de
+  procesos e Inteligencia operativa se presentan como instrumentos subordinados al
+  producto real: *resolver el problema más caro*.
+
 ## 4b. Capa de motion / experiencia premium
 
 Toda la animación es vanilla (cero dependencias), GPU-friendly y desactivable:
