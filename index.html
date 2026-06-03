@@ -303,7 +303,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal-wrap.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border-cyan);border-radius:20px;padding:40px;max-width:480px;width:100%;position:relative;animation:slideUp .3s ease;max-height:92vh;overflow-y:auto}
-.modal.wide{max-width:560px}
+.modal.wide{max-width:640px}
 @keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);border-radius:20px 20px 0 0}
 .modal-x{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--muted);font-size:26px;cursor:pointer;line-height:1;transition:color .2s;width:32px;height:32px;border-radius:6px}
@@ -328,8 +328,9 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:40px
 .modal-submit:disabled{opacity:.6;cursor:wait;transform:none}
 .modal-legal{font-size:11px;color:var(--muted2);text-align:center;margin-top:14px;line-height:1.5}
 .modal-legal a{color:var(--muted);text-decoration:underline}
-.calendly-host{min-height:560px;margin:-8px -8px 0}
-.step-loading{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
+.calendly-host{height:640px;margin:6px -6px 0;overflow:hidden;border-radius:12px;background:#fff}
+.calendly-host iframe{width:100%!important;height:100%!important;border:0!important;display:block}
+.step-loading{text-align:center;padding:60px 0;color:#5b6470;font-size:14px}
 .modal-success{text-align:center;padding:16px 0}
 .modal-success-icon{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:var(--cyan-dim);border:1px solid var(--border-cyan);display:flex;align-items:center;justify-content:center}
 .modal-success h4{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;margin-bottom:10px}
@@ -1003,6 +1004,8 @@ function goToCalendly(data){
 
   document.getElementById('step-calendly').style.display='block';
   const host=document.getElementById('calendly-host');
+  // Altura responsiva: llena el modal sin generar doble scroll en la ventana.
+  host.style.height = Math.max(460, Math.min(660, window.innerHeight*0.92 - 230)) + 'px';
   const url=NEXIA_CONFIG.CALENDLY_URL
     +'?hide_gdpr_banner=1&background_color=0D1117&text_color=ffffff&primary_color=0055ff'
     +'&name='+encodeURIComponent(data.nombre)
